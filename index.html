@@ -526,7 +526,8 @@
                 Request an Executive Briefing
             </button>
 
-            <form id="executiveForm" class="contact-form hidden" action="mailto:info@innovativess.us" method="POST" enctype="text/plain">
+            <!-- Cleaned form element using safe JS handler instead of insecure mailto action -->
+            <form id="executiveForm" class="contact-form hidden" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label for="email">Executive / Business Email</label>
                     <input type="email" id="email" name="Executive Email" placeholder="name@company.com" required>
@@ -544,9 +545,9 @@
         </footer>
     </main>
 
-<!-- Cloudflare Web Analytics -->
-    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "991c8344b97c4db2a619ed8ea308748d"}'></script>
-    <!-- End Cloudflare Web Analytics -->
+    <!-- Manual Cloudflare Web Analytics Beacon Script -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_ACTUAL_TOKEN_HERE"}'></script>
+
     <script>
         function toggleBriefingForm() {
             const form = document.getElementById('executiveForm');
@@ -564,6 +565,18 @@
 
             // Telemetry tracking hook for form toggle action
             sendTelemetry('interaction', isHidden ? 'Open Executive Briefing Form' : 'Close Executive Briefing Form');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Trigger telemetry tracking hook for form submission
+            sendTelemetry('form_submission', 'Executive Briefing Submitted');
+            
+            // Securely open user's email client as a fallback submission action
+            window.location.href = `mailto:info@innovativess.us?subject=Executive%20Briefing%20Request&body=From:%20${encodeURIComponent(email)}%0A%0A${encodeURIComponent(message)}`;
         }
 
         function sendTelemetry(eventType, label) {
