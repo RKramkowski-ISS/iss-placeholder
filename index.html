@@ -3,70 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovative Strategic Solutions | Project Rescue & Recovery</title>
+    
+    <!-- Primary SEO Metadata -->
+    <title>Innovative Strategic Solutions | IT Project Rescue & Strategic Alignment</title>
+    <meta name="description" content="Innovative Strategic Solutions, LLC provides rapid diagnostic intervention, project rescue, and strategic alignment across St. Louis County, St. Charles County, and surrounding MO areas.">
+    <meta name="keywords" content="Innovative Strategic Solutions, Project Rescue Consultant, Strategic Alignment, IT Turnaround, St. Louis Business Consultant, St. Charles MO Consulting">
+    <meta name="author" content="Innovative Strategic Solutions, LLC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://innovativess.us/">
+
+    <!-- Geographic & Regional SEO Signals -->
+    <meta name="geo.region" content="US-MO">
+    <meta name="geo.placename" content="Greater St. Louis & St. Charles County">
+
+    <!-- Open Graph / Social Media Preview (LinkedIn, Slack, Messaging) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://innovativess.us/">
+    <meta property="og:title" content="Innovative Strategic Solutions, LLC | Project Rescue & Alignment">
+    <meta property="og:description" content="Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives in Greater St. Louis.">
+    <meta property="og:image" content="https://innovativess.us/Logo%205.png">
+
+    <!-- Structured Data (JSON-LD) for Search Engine Knowledge Graphs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Innovative Strategic Solutions, LLC",
+      "image": "https://innovativess.us/Logo%205.png",
+      "url": "https://innovativess.us/",
+      "telephone": "+1-636-352-1789", 
+      "email": "info@innovativess.us",
+      "priceRange": "Per Result / Value-Based",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "MO",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "St. Charles County" },
+        { "@type": "AdministrativeArea", "name": "St. Louis County" },
+        { "@type": "AdministrativeArea", "name": "Jefferson County" },
+        { "@type": "AdministrativeArea", "name": "Warren County" },
+        { "@type": "AdministrativeArea", "name": "Lincoln County" },
+        { "@type": "City", "name": "St. Louis" },
+        { "@type": "City", "name": "Chesterfield" },
+        { "@type": "City", "name": "Clayton" },
+        { "@type": "City", "name": "O'Fallon" }
+      ],
+      "description": "Specialized enterprise IT consulting focusing on rapid diagnostic intervention, project rescue, and strategic systems alignment."
+    }
+    </script>
+
     <style>
-        body {
-            background-color: #0f172a; /* Deep Slate Blue background */
-            color: #f8fafc; /* Clean white-slate text */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent-color: #2f81f7;
+            --accent-hover: #58a6ff;
         }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
         .container {
-            max-width: 650px;
+            max-width: 680px;
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
+
         .logo-container {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
+
         .logo-img {
-            max-width: 280px;
+            max-width: 260px;
             height: auto;
-            border-radius: 4px; /* Optional: smooths edges slightly */
+            border-radius: 6px;
         }
-        p {
-            color: #94a3b8; /* Soft slate gray */
-            font-size: 1.15rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-hover);
+            background-color: rgba(56, 139, 253, 0.1);
+            border: 1px solid rgba(56, 139, 253, 0.4);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #334155, transparent);
-            margin: 2rem 0;
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            line-height: 1.25;
         }
-        .cta {
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .region-tag {
+            font-size: 0.9rem;
+            color: var(--accent-hover);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .services-grid {
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .service-item {
+            margin-bottom: 15px;
+        }
+
+        .service-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-title {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .direct-contact {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
             font-size: 1rem;
-            color: #e2e8f0;
         }
-        .email {
-            color: #38bdf8; /* Sharp sky blue accent */
+
+        .contact-link {
+            color: var(--accent-hover);
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 1px dashed #38bdf8;
+            transition: color 0.2s ease;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .footer-note {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Logo Placement -->
-        <div class="logo-container">
-            <img src="Logo 5.png" alt="Innovative Strategic Solutions Logo" class="logo-img">
+
+    <main class="container">
+        <!-- Logo Header -->
+        <header>
+            <div class="logo-container">
+                <img src="Logo 5.png" alt="Innovative Strategic Solutions, LLC Logo" class="logo-img">
+            </div>
+            <span class="badge">Project Rescue & Strategic Alignment</span>
+            <h1>Innovative Strategic Solutions, LLC</h1>
+            <p class="subtitle">Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.</p>
+            <p class="region-tag">📍 Serving Greater St. Louis, St. Charles County, & Surrounding MO Region</p>
+        </header>
+
+        <!-- Services Breakdown -->
+        <section class="services-grid">
+            <div class="service-item">
+                <div class="service-title">🛟 IT Project Rescue & Recovery</div>
+                <div class="service-desc">Stepping into stalled or failing technical initiatives to diagnose bottlenecks, rebuild architecture, and deliver fixed-outcome results.</div>
+            </div>
+            <div class="service-item" style="margin-top: 15px;">
+                <div class="service-title">🎯 Strategic Systems Alignment</div>
+                <div class="service-desc">Bridging operational executive goals with robust data pipelines, relational database architecture, and custom integrations.</div>
+            </div>
+        </section>
+
+        <!-- Direct Contact Info -->
+        <div class="direct-contact">
+            <div>✉️ <a href="mailto:info@innovativess.us" class="contact-link">info@innovativess.us</a></div>
+            <div>📞 <a href="tel:+16363521789" class="contact-link">(636) 352-1789</a></div>
         </div>
-        
-        <p>
-            Macro industry research indicates that over 50% of complex corporate projects actively encounter distress—frequently driven by decision latency and structural friction rather than execution capability.  We specialize in rapid diagnostic intervention and objective critical-path re-baselining.
-        </p>
-        <div class="divider"></div>
-        <div class="cta">
-            Our comprehensive website is launching soon. For an immediate urgent project recovery discussion, contact: 
-            <br><br>
-            <a href="mailto:robert@innovativess.us" class="email">info@innovativess.us</a>
-        </div>
-    </div>
+
+        <!-- Inquiry Form -->
+        <form class="contact-form" action="mailto:info@innovativess.us" method="POST" enctype="text/plain">
+            <div class="form-group">
+                <label for="email">Executive / Business Email</label>
+                <input type="email" id="email" name="Executive Email" placeholder="name@company.com" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Brief Project Inquiry or Challenge</label>
+                <textarea id="message" name="Project Challenge" rows="3" placeholder="Tell us about your technical timeline or project scope..."></textarea>
+            </div>
+            <button type="submit">Request Executive Briefing</button>
+        </form>
+
+        <!-- Corrected Footer -->
+        <footer class="footer-note">
+            &copy; 2026 Innovative Strategic Solutions, LLC &bull; St. Charles & St. Louis Regional Services
+        </footer>
+    </main>
+
 </body>
 </html>
