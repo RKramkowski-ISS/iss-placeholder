@@ -93,7 +93,6 @@
             position: relative;
         }
 
-        /* Container for Cards, Contact, and Footer */
         .wrapper {
             max-width: 920px;
             width: 100%;
@@ -103,7 +102,6 @@
             padding: 0 clamp(16px, 3vw, 40px);
         }
 
-        /* Sticky Brand Header */
         .brand-header {
             position: sticky;
             top: 0;
@@ -158,7 +156,6 @@
             backdrop-filter: blur(8px);
         }
 
-        /* Full Window-Width Hero Section */
         .hero-viewport-section {
             width: 100%;
             position: relative;
@@ -172,7 +169,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* Full-Width Background Video */
         .hero-bg-video {
             position: absolute;
             top: 50%;
@@ -186,7 +182,6 @@
             pointer-events: none;
         }
 
-        /* Contrast Gradient Masking */
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -195,7 +190,6 @@
             pointer-events: none;
         }
 
-        /* Inner Hero Content Box */
         .hero-content-inner {
             position: relative;
             z-index: 2;
@@ -247,7 +241,6 @@
             display: inline-block;
         }
 
-        /* Responsive Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 42vw, 420px), 1fr));
@@ -305,7 +298,6 @@
             line-height: 1.6;
         }
 
-        /* Direct Contact Links */
         .direct-contact {
             margin-bottom: clamp(30px, 4vw, 40px);
             display: flex;
@@ -327,7 +319,6 @@
             text-decoration: underline;
         }
 
-        /* Collapsible Form Container */
         .briefing-container {
             max-width: 600px;
             margin: 0 auto clamp(30px, 4vw, 50px) auto;
@@ -348,6 +339,7 @@
             letter-spacing: 0.2px;
             width: 100%;
             max-width: 420px;
+            margin-bottom: 20px;
         }
 
         .briefing-toggle-btn:hover {
@@ -449,7 +441,6 @@
 </head>
 <body>
 
-    <!-- Subordinated Sticky Brand Header -->
     <header class="brand-header">
         <div class="brand-identity">
             <img src="Logo 5.png" alt="Innovative Strategic Solutions Logo" class="brand-logo-small">
@@ -461,17 +452,13 @@
         </div>
     </header>
 
-    <!-- Full Window-Width Hero Section -->
     <section class="hero-viewport-section">
-        <!-- Background Video Canvas linked directly to Cloudflare R2 Edge -->
         <video class="hero-bg-video" autoplay loop muted playsinline poster="Logo 5.png">
             <source src="https://assets.innovativess.us/ISS%20Title%20Background.mp4" type="video/mp4">
         </video>
 
-        <!-- Dark Contrast Masking -->
         <div class="hero-overlay"></div>
 
-        <!-- Hero Content Layer -->
         <div class="hero-content-inner">
             <span class="hero-tag">Enterprise IT Turnaround & Recovery</span>
             
@@ -490,7 +477,6 @@
     </section>
 
     <main class="wrapper">
-        <!-- Responsive Services Grid -->
         <section class="services-grid">
             <div class="service-card">
                 <div class="service-header">
@@ -530,13 +516,11 @@
             </div>
         </section>
 
-        <!-- Direct Contact Links -->
         <div class="direct-contact">
             <div>✉️ <a href="mailto:info@innovativess.us" class="contact-link">info@innovativess.us</a></div>
             <div>📞 <a href="tel:+16363521789" class="contact-link">(636) 352-1789</a></div>
         </div>
 
-        <!-- Collapsible Executive Briefing Form -->
         <div class="briefing-container">
             <button type="button" class="briefing-toggle-btn" id="toggleBriefingBtn" onclick="toggleBriefingForm()">
                 Request an Executive Briefing
@@ -560,16 +544,56 @@
         </footer>
     </main>
 
+   <!-- Cloudflare Web Analytics -->
+    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f6fba33a8a4446c0859b7fc03ce9ec96"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
     <script>
         function toggleBriefingForm() {
             const form = document.getElementById('executiveForm');
             const toggleBtn = document.getElementById('toggleBriefingBtn');
             
-            if (form.classList.contains('hidden')) {
+            const isHidden = form.classList.contains('hidden');
+            
+            if (isHidden) {
                 form.classList.remove('hidden');
-                toggleBtn.style.display = 'none';
+                toggleBtn.textContent = 'Close Briefing Request';
+            } else {
+                form.classList.add('hidden');
+                toggleBtn.textContent = 'Request an Executive Briefing';
+            }
+
+            // Telemetry tracking hook for form toggle action
+            sendTelemetry('interaction', isHidden ? 'Open Executive Briefing Form' : 'Close Executive Briefing Form');
+        }
+
+        function sendTelemetry(eventType, label) {
+            const payload = JSON.stringify({
+                event: eventType,
+                target: label,
+                timestamp: new Date().toISOString(),
+                path: window.location.pathname
+            });
+
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon('https://telemetry.innovativess.us/collect', payload);
+            } else {
+                fetch('https://telemetry.innovativess.us/collect', {
+                    method: 'POST',
+                    body: payload,
+                    keepalive: true,
+                    headers: { 'Content-Type': 'application/json' }
+                }).catch(() => {});
             }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.contact-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    sendTelemetry('conversion_intent', e.target.textContent.trim());
+                });
+            });
+        });
     </script>
 
 </body>
