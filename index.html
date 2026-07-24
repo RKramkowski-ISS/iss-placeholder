@@ -94,20 +94,6 @@
             position: relative;
         }
 
-        /* Responsive Ambient Background Lighting */
-        body::before {
-            content: "";
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: clamp(300px, 70vw, 800px);
-            height: clamp(300px, 50vw, 600px);
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
         .wrapper {
             max-width: 920px;
             width: 100%;
@@ -116,7 +102,7 @@
             z-index: 1;
         }
 
-        /* Subordinated Brand Header Line */
+        /* Subordinated Company Header */
         .brand-header {
             display: flex;
             align-items: center;
@@ -149,7 +135,6 @@
             text-transform: uppercase;
         }
 
-        /* Placeholder Warning Banner */
         .placeholder-banner {
             display: inline-flex;
             align-items: center;
@@ -166,9 +151,48 @@
             backdrop-filter: blur(8px);
         }
 
-        /* Hero Core Positioning (Primary Focal Point) */
+        /* Hero Section with Ambient Video Background */
         .hero-section {
+            position: relative;
+            border-radius: 20px;
+            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
             margin-bottom: clamp(30px, 4vw, 50px);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            background: rgba(10, 15, 26, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video element filling hero box */
+        .hero-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.28; /* Subdued background effect */
+            filter: saturate(1.2) contrast(1.1);
+            pointer-events: none;
+        }
+
+        /* Dark overlay gradient to guarantee maximum text contrast */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(6, 9, 14, 0.65) 0%, rgba(6, 9, 14, 0.95) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Content elevated above video and gradient layer */
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-tag {
@@ -178,38 +202,38 @@
             color: var(--accent-cyan);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 12px;
-            background: rgba(56, 189, 248, 0.08);
-            padding: 6px 16px;
+            margin-bottom: 16px;
+            background: rgba(56, 189, 248, 0.12);
+            padding: 6px 18px;
             border-radius: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            backdrop-filter: blur(8px);
         }
 
-        /* Fluid Typography scaling for Executive Headline */
         h1.hero-statement {
             font-size: clamp(1.8rem, 3.8vw, 3.2rem);
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.25;
             letter-spacing: -0.02em;
             color: var(--text-heading);
             background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .notice-text {
-            color: var(--text-muted);
+            color: var(--text-main);
             font-size: clamp(0.88rem, 1.1vw, 1rem);
             font-style: italic;
             max-width: 680px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 22px auto;
         }
 
         .region-tag {
             font-size: clamp(0.82rem, 1vw, 0.92rem);
-            color: var(--text-main);
-            font-weight: 500;
+            color: var(--accent-cyan);
+            font-weight: 600;
             display: inline-block;
         }
 
@@ -427,7 +451,6 @@
             color: var(--text-muted);
         }
 
-        /* Mobile Optimization overrides */
         @media (max-width: 580px) {
             .brand-header {
                 justify-content: center;
@@ -451,28 +474,37 @@
                 <span class="brand-name">Innovative Strategic Solutions, LLC</span>
             </div>
             
-            <!-- Temporary Status Pill -->
             <div class="placeholder-banner">
                 <span>🚧 Full Portal Launching Soon</span>
             </div>
         </header>
 
-        <!-- Primary Focal Point: The Executive Statement -->
+        <!-- Hero Section with Background Video Canvas -->
         <section class="hero-section">
-            <span class="hero-tag">Enterprise IT Turnaround & Recovery</span>
-            
-            <!-- Emphasized Hook -->
-            <h1 class="hero-statement">
-                Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.
-            </h1>
-            
-            <p class="notice-text">
-                Our full digital experience is currently under development. For urgent project recovery or executive consultation, please use the briefing request below.
-            </p>
-            
-            <p class="region-tag">
-                📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada
-            </p>
+            <!-- Background Video Element (Replace src with your downloaded MP4 file) -->
+            <video class="hero-bg-video" autoplay loop muted playsinline poster="Logo 5.png">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-code-31832-large.mp4" type="video/mp4">
+            </video>
+
+            <!-- Contrast Gradient Overlay -->
+            <div class="hero-overlay"></div>
+
+            <!-- Elevated Hero Content -->
+            <div class="hero-content">
+                <span class="hero-tag">Enterprise IT Turnaround & Recovery</span>
+                
+                <h1 class="hero-statement">
+                    Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.
+                </h1>
+                
+                <p class="notice-text">
+                    Our full digital experience is currently under development. For urgent project recovery or executive consultation, please use the briefing request below.
+                </p>
+                
+                <p class="region-tag">
+                    📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada
+                </p>
+            </div>
         </section>
 
         <!-- Executive Metrics/Value Ribbon -->
@@ -493,7 +525,6 @@
             <div class="service-card">
                 <div class="service-header">
                     <div class="icon-badge">
-                        <!-- Custom SVG: White Life Preserver with Red Trim -->
                         <svg width="24" height="24" viewBox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#d0d7de" stroke-width="2" />
                             <circle cx="50" cy="50" r="20" fill="#0d1117" stroke="#d0d7de" stroke-width="2" />
@@ -511,7 +542,6 @@
             <div class="service-card">
                 <div class="service-header">
                     <div class="icon-badge">
-                        <!-- Custom SVG: Red/White Target with Arrow in Bullseye -->
                         <svg width="24" height="24" viewBox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#dc2626" />
                             <circle cx="50" cy="50" r="33" fill="#ffffff" />
