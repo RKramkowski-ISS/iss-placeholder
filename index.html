@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary SEO Metadata -->
-    <title>Innovative Strategic Solutions | IT Project Rescue & Strategic Alignment</title>
-    <meta name="description" content="Innovative Strategic Solutions, LLC provides rapid diagnostic intervention, project rescue, and strategic alignment across St. Louis County, St. Charles County, and surrounding MO areas.">
-    <meta name="keywords" content="Innovative Strategic Solutions, Project Rescue Consultant, Strategic Alignment, IT Turnaround, St. Louis Business Consultant, St. Charles MO Consulting">
+    <title>Innovative Strategic Solutions | IT Project Rescue & Strategic Alignment (MO & IL)</title>
+    <meta name="description" content="Innovative Strategic Solutions, LLC provides rapid diagnostic intervention, project rescue, and strategic alignment across St. Louis, St. Charles, and Metro East IL (Scott AFB corridor).">
+    <meta name="keywords" content="Innovative Strategic Solutions, Project Rescue Consultant, Strategic Alignment, IT Turnaround, St. Louis Business Consultant, Scott AFB Defense Contractor Consulting, Metro East IL IT Rescue">
     <meta name="author" content="Innovative Strategic Solutions, LLC">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://innovativess.us/">
 
     <!-- Geographic & Regional SEO Signals -->
-    <meta name="geo.region" content="US-MO">
-    <meta name="geo.placename" content="Greater St. Louis & St. Charles County">
+    <meta name="geo.region" content="US-MO;US-IL">
+    <meta name="geo.placename" content="Greater St. Louis, St. Charles County, & Metro East IL">
 
-    <!-- Open Graph / Social Media Preview (LinkedIn, Slack, Messaging) -->
+    <!-- Open Graph / Social Media Preview -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://innovativess.us/">
     <meta property="og:title" content="Innovative Strategic Solutions, LLC | Project Rescue & Alignment">
-    <meta property="og:description" content="Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives in Greater St. Louis.">
+    <meta property="og:description" content="Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise and defense sector initiatives in Greater St. Louis & Metro East IL.">
     <meta property="og:image" content="https://innovativess.us/Logo%205.png">
 
-    <!-- Structured Data (JSON-LD) for Search Engine Knowledge Graphs -->
+    <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -40,29 +40,35 @@
         "addressCountry": "US"
       },
       "areaServed": [
-        { "@type": "AdministrativeArea", "name": "St. Charles County" },
-        { "@type": "AdministrativeArea", "name": "St. Louis County" },
-        { "@type": "AdministrativeArea", "name": "Jefferson County" },
-        { "@type": "AdministrativeArea", "name": "Warren County" },
-        { "@type": "AdministrativeArea", "name": "Lincoln County" },
+        { "@type": "AdministrativeArea", "name": "St. Charles County, MO" },
+        { "@type": "AdministrativeArea", "name": "St. Louis County, MO" },
+        { "@type": "AdministrativeArea", "name": "St. Clair County, IL" },
+        { "@type": "AdministrativeArea", "name": "Madison County, IL" },
+        { "@type": "AdministrativeArea", "name": "Jefferson County, MO" },
+        { "@type": "AdministrativeArea", "name": "Warren County, MO" },
+        { "@type": "AdministrativeArea", "name": "Lincoln County, MO" },
         { "@type": "City", "name": "St. Louis" },
         { "@type": "City", "name": "Chesterfield" },
         { "@type": "City", "name": "Clayton" },
-        { "@type": "City", "name": "O'Fallon" }
+        { "@type": "City", "name": "O'Fallon" },
+        { "@type": "City", "name": "Belleville" },
+        { "@type": "City", "name": "Scott AFB Corridor" }
       ],
-      "description": "Specialized enterprise IT consulting focusing on rapid diagnostic intervention, project rescue, and strategic systems alignment."
+      "description": "Specialized enterprise IT consulting focusing on rapid diagnostic intervention, project rescue, and strategic systems alignment for corporate and defense contractor initiatives."
     }
     </script>
 
     <style>
         :root {
             --bg-color: #0d1117;
-            --card-bg: #161b22;
             --border-color: #30363d;
             --text-main: #f0f6fc;
             --text-muted: #8b949e;
             --accent-color: #2f81f7;
             --accent-hover: #58a6ff;
+            --banner-bg: rgba(234, 179, 8, 0.1);
+            --banner-border: rgba(234, 179, 8, 0.4);
+            --banner-text: #fde047;
         }
 
         * {
@@ -76,22 +82,35 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 680px;
+        .wrapper {
+            max-width: 800px;
             width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
+        }
+
+        /* Placeholder Warning Banner */
+        .placeholder-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--banner-text);
+            background-color: var(--banner-bg);
+            border: 1px solid var(--banner-border);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
         }
 
         .logo-container {
@@ -99,27 +118,13 @@
         }
 
         .logo-img {
-            max-width: 260px;
+            max-width: 280px;
             height: auto;
             border-radius: 6px;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-hover);
-            background-color: rgba(56, 139, 253, 0.1);
-            border: 1px solid rgba(56, 139, 253, 0.4);
-            border-radius: 20px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
         h1 {
-            font-size: 1.85rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 12px;
             color: var(--text-main);
@@ -128,27 +133,34 @@
 
         p.subtitle {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+        }
+
+        .notice-text {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            font-style: italic;
             margin-bottom: 25px;
         }
 
         .region-tag {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--accent-hover);
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .services-grid {
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
-            margin-bottom: 25px;
+            padding: 30px 0;
+            margin-bottom: 30px;
             text-align: left;
         }
 
         .service-item {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .service-item:last-child {
@@ -157,21 +169,23 @@
 
         .service-title {
             font-weight: 600;
+            font-size: 1.1rem;
             color: var(--text-main);
+            margin-bottom: 4px;
         }
 
         .service-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
         }
 
         .direct-contact {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
             flex-wrap: wrap;
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .contact-link {
@@ -190,6 +204,8 @@
             flex-direction: column;
             gap: 15px;
             text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .form-group {
@@ -207,7 +223,7 @@
         input, textarea {
             width: 100%;
             padding: 12px;
-            background-color: var(--bg-color);
+            background-color: #161b22;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-main);
@@ -236,7 +252,7 @@
         }
 
         .footer-note {
-            margin-top: 25px;
+            margin-top: 40px;
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -245,16 +261,21 @@
 </head>
 <body>
 
-    <main class="container">
-        <!-- Logo Header -->
+    <main class="wrapper">
         <header>
+            <!-- Explicit Placeholder Warning Banner -->
+            <div class="placeholder-banner">
+                <span>🚧 Temporary Placeholder Page — Full Web Experience Launching Soon</span>
+            </div>
+
             <div class="logo-container">
                 <img src="Logo 5.png" alt="Innovative Strategic Solutions, LLC Logo" class="logo-img">
             </div>
-            <span class="badge">Project Rescue & Strategic Alignment</span>
+
             <h1>Innovative Strategic Solutions, LLC</h1>
-            <p class="subtitle">Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.</p>
-            <p class="region-tag">📍 Serving Greater St. Louis, St. Charles County, & Surrounding MO Region</p>
+            <p class="subtitle">Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise and defense initiatives.</p>
+            <p class="notice-text">Our comprehensive corporate portal is currently under development. For urgent project recovery, technical consulting, or grant discussions, please use the direct channels below.</p>
+            <p class="region-tag">📍 Serving Greater St. Louis, St. Charles County, & Metro East IL (Scott AFB Corridor)</p>
         </header>
 
         <!-- Services Breakdown -->
@@ -263,7 +284,7 @@
                 <div class="service-title">🛟 IT Project Rescue & Recovery</div>
                 <div class="service-desc">Stepping into stalled or failing technical initiatives to diagnose bottlenecks, rebuild architecture, and deliver fixed-outcome results.</div>
             </div>
-            <div class="service-item" style="margin-top: 15px;">
+            <div class="service-item">
                 <div class="service-title">🎯 Strategic Systems Alignment</div>
                 <div class="service-desc">Bridging operational executive goals with robust data pipelines, relational database architecture, and custom integrations.</div>
             </div>
@@ -288,9 +309,8 @@
             <button type="submit">Request Executive Briefing</button>
         </form>
 
-        <!-- Corrected Footer -->
         <footer class="footer-note">
-            &copy; 2026 Innovative Strategic Solutions, LLC &bull; St. Charles & St. Louis Regional Services
+            &copy; 2026 Innovative Strategic Solutions, LLC &bull; Greater St. Louis & Metro East Illinois Services
         </footer>
     </main>
 
