@@ -153,14 +153,10 @@
             backdrop-filter: blur(8px);
         }
 
-        /* Full Window-Width Hero Section */
+/* Full Window-Width Hero Section */
         .hero-viewport-section {
-            width: 100vw;
+            width: 100%;
             position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
             margin-bottom: clamp(30px, 4vw, 50px);
             padding: clamp(50px, 8vw, 100px) clamp(16px, 4vw, 40px);
             display: flex;
@@ -170,7 +166,6 @@
             border-bottom: 1px solid var(--border-subtle);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
-
         /* Full-Width Background Video */
         .hero-bg-video {
             position: absolute;
