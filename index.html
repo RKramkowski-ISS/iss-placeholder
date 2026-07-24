@@ -88,29 +88,31 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: clamp(20px, 4vw, 60px) clamp(16px, 3vw, 40px);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
 
+        /* Container for Cards, Contact, and Footer */
         .wrapper {
             max-width: 920px;
             width: 100%;
             text-align: center;
             position: relative;
             z-index: 1;
+            padding: 0 clamp(16px, 3vw, 40px);
         }
 
         /* Subordinated Company Header */
         .brand-header {
+            width: 100%;
+            max-width: 920px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 12px;
-            padding-bottom: clamp(16px, 2vw, 24px);
-            margin-bottom: clamp(24px, 3vw, 40px);
+            padding: clamp(20px, 3vw, 30px) clamp(16px, 3vw, 40px) clamp(16px, 2vw, 24px) clamp(16px, 3vw, 40px);
             border-bottom: 1px solid var(--border-subtle);
         }
 
@@ -151,48 +153,55 @@
             backdrop-filter: blur(8px);
         }
 
-        /* Hero Section with Ambient Video Background */
-        .hero-section {
+        /* Full Window-Width Hero Section */
+        .hero-viewport-section {
+            width: 100vw;
             position: relative;
-            border-radius: 20px;
-            padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
             margin-bottom: clamp(30px, 4vw, 50px);
+            padding: clamp(50px, 8vw, 100px) clamp(16px, 4vw, 40px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            border: 1px solid var(--border-subtle);
-            background: rgba(10, 15, 26, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border-subtle);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* Video element filling hero box */
+        /* Full-Width Background Video */
         .hero-bg-video {
             position: absolute;
             top: 50%;
             left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             transform: translate(-50%, -50%);
             object-fit: cover;
             z-index: 0;
-            opacity: 0.28; /* Subdued background effect */
-            filter: saturate(1.2) contrast(1.1);
+            opacity: 0.35;
+            filter: saturate(1.1) contrast(1.1);
             pointer-events: none;
         }
 
-        /* Dark overlay gradient to guarantee maximum text contrast */
+        /* Contrast Gradient Masking */
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle, rgba(6, 9, 14, 0.65) 0%, rgba(6, 9, 14, 0.95) 100%);
+            background: radial-gradient(circle, rgba(6, 9, 14, 0.65) 0%, rgba(6, 9, 14, 0.92) 100%);
             z-index: 1;
             pointer-events: none;
         }
 
-        /* Content elevated above video and gradient layer */
-        .hero-content {
+        /* Inner Hero Content Box */
+        .hero-content-inner {
             position: relative;
             z-index: 2;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
         }
 
         .hero-tag {
@@ -211,7 +220,7 @@
         }
 
         h1.hero-statement {
-            font-size: clamp(1.8rem, 3.8vw, 3.2rem);
+            font-size: clamp(1.9rem, 4vw, 3.4rem);
             font-weight: 800;
             line-height: 1.25;
             letter-spacing: -0.02em;
@@ -220,18 +229,19 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .notice-text {
             color: var(--text-main);
-            font-size: clamp(0.88rem, 1.1vw, 1rem);
+            font-size: clamp(0.9rem, 1.1vw, 1.05rem);
             font-style: italic;
-            max-width: 680px;
+            max-width: 700px;
             margin: 0 auto 22px auto;
         }
 
         .region-tag {
-            font-size: clamp(0.82rem, 1vw, 0.92rem);
+            font-size: clamp(0.82rem, 1vw, 0.95rem);
             color: var(--accent-cyan);
             font-weight: 600;
             display: inline-block;
@@ -449,6 +459,7 @@
             text-align: center;
             font-size: 0.82rem;
             color: var(--text-muted);
+            padding-bottom: 30px;
         }
 
         @media (max-width: 580px) {
@@ -465,48 +476,47 @@
 </head>
 <body>
 
-    <main class="wrapper">
+    <!-- Subordinated Top Brand Header -->
+    <header class="brand-header">
+        <div class="brand-identity">
+            <img src="Logo 5.png" alt="Innovative Strategic Solutions Logo" class="brand-logo-small">
+            <span class="brand-name">Innovative Strategic Solutions, LLC</span>
+        </div>
         
-        <!-- Subordinated Company Bar -->
-        <header class="brand-header">
-            <div class="brand-identity">
-                <img src="Logo 5.png" alt="Innovative Strategic Solutions Logo" class="brand-logo-small">
-                <span class="brand-name">Innovative Strategic Solutions, LLC</span>
-            </div>
+        <div class="placeholder-banner">
+            <span>🚧 Full Portal Launching Soon</span>
+        </div>
+    </header>
+
+    <!-- Full Window-Width Hero Section -->
+    <section class="hero-viewport-section">
+        <!-- Background Video Canvas linked directly to Cloudflare R2 Edge -->
+        <video class="hero-bg-video" autoplay loop muted playsinline poster="Logo 5.png">
+            <source src="https://assets.innovativess.us/ISS%20Title%20Background.mp4" type="video/mp4">
+        </video>
+
+        <!-- Dark Contrast Masking -->
+        <div class="hero-overlay"></div>
+
+        <!-- Hero Content Layer -->
+        <div class="hero-content-inner">
+            <span class="hero-tag">Enterprise IT Turnaround & Recovery</span>
             
-            <div class="placeholder-banner">
-                <span>🚧 Full Portal Launching Soon</span>
-            </div>
-        </header>
+            <h1 class="hero-statement">
+                Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.
+            </h1>
+            
+            <p class="notice-text">
+                Our full digital experience is currently under development. For urgent project recovery or executive consultation, please use the briefing request below.
+            </p>
+            
+            <p class="region-tag">
+                📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada
+            </p>
+        </div>
+    </section>
 
-        <!-- Hero Section with Background Video Canvas -->
-        <section class="hero-section">
-            <!-- Background Video Element (Replace src with your downloaded MP4 file) -->
-            <video class="hero-bg-video" autoplay loop muted playsinline poster="Logo 5.png">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-code-31832-large.mp4" type="video/mp4">
-            </video>
-
-            <!-- Contrast Gradient Overlay -->
-            <div class="hero-overlay"></div>
-
-            <!-- Elevated Hero Content -->
-            <div class="hero-content">
-                <span class="hero-tag">Enterprise IT Turnaround & Recovery</span>
-                
-                <h1 class="hero-statement">
-                    Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.
-                </h1>
-                
-                <p class="notice-text">
-                    Our full digital experience is currently under development. For urgent project recovery or executive consultation, please use the briefing request below.
-                </p>
-                
-                <p class="region-tag">
-                    📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada
-                </p>
-            </div>
-        </section>
-
+    <main class="wrapper">
         <!-- Executive Metrics/Value Ribbon -->
         <div class="value-ribbon">
             <div class="value-pill">
