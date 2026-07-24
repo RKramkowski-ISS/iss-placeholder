@@ -58,40 +58,72 @@
 
     <style>
         :root {
-            --bg-color: #0d1117;
-            --border-color: #30363d;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
-            --accent-color: #2f81f7;
-            --accent-hover: #58a6ff;
-            --banner-bg: rgba(234, 179, 8, 0.1);
-            --banner-border: rgba(234, 179, 8, 0.4);
-            --banner-text: #fde047;
+            --bg-base: #06090e;
+            --surface-card: rgba(18, 24, 38, 0.65);
+            --border-glow: rgba(56, 189, 248, 0.2);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-heading: #ffffff;
+            --text-main: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent-cyan: #38bdf8;
+            --accent-blue: #2563eb;
+            --accent-indigo: #6366f1;
+            --banner-bg: rgba(234, 179, 8, 0.08);
+            --banner-border: rgba(234, 179, 8, 0.3);
+            --banner-text: #fef08a;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-base);
             color: var(--text-main);
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 40px 20px;
+            padding: 50px 20px;
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Background Light Orbs */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            left: 20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            bottom: -10%;
+            right: 20%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .wrapper {
-            max-width: 800px;
+            max-width: 860px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         /* Placeholder Warning Banner */
@@ -99,136 +131,215 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 16px;
-            font-size: 0.85rem;
+            padding: 6px 18px;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--banner-text);
-            background-color: var(--banner-bg);
+            background: var(--banner-bg);
             border: 1px solid var(--banner-border);
-            border-radius: 20px;
-            margin-bottom: 25px;
+            border-radius: 999px;
+            margin-bottom: 28px;
             text-transform: uppercase;
-            letter-spacing: 0.75px;
+            letter-spacing: 0.8px;
+            backdrop-filter: blur(8px);
         }
 
         .logo-container {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .logo-img {
-            max-width: 280px;
+            max-width: 300px;
             height: auto;
-            border-radius: 6px;
+            border-radius: 8px;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
         }
 
         h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-main);
-            line-height: 1.25;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-heading);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         p.subtitle {
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            max-width: 720px;
+            margin: 0 auto 16px auto;
+            font-weight: 400;
         }
 
         .notice-text {
-            color: #e2e8f0;
+            color: var(--text-muted);
             font-size: 0.95rem;
             font-style: italic;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         .region-tag {
             font-size: 0.95rem;
-            color: var(--accent-hover);
+            color: var(--accent-cyan);
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.08);
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
+        /* Executive Value Highlights Ribbon */
+        .value-ribbon {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .value-pill {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-subtle);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .value-pill span {
+            color: var(--accent-cyan);
+        }
+
+        /* Glassmorphic Services Grid */
         .services-grid {
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 30px 0;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
             text-align: left;
         }
 
-        .service-item {
-            margin-bottom: 20px;
+        .service-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            padding: 28px;
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-item:last-child {
-            margin-bottom: 0;
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .service-title {
+        .service-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--text-main);
-            margin-bottom: 4px;
+            gap: 16px;
+            margin-bottom: 10px;
         }
 
-        .service-icon {
-            width: 24px;
-            height: 24px;
+        .icon-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
         }
 
-        .service-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            padding-left: 36px;
+        .service-title-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-heading);
         }
 
+        .service-desc {
+            font-size: 0.98rem;
+            color: var(--text-main);
+            line-height: 1.65;
+            padding-left: 60px;
+        }
+
+        /* Direct Contact Info */
         .direct-contact {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             display: flex;
-            gap: 25px;
+            gap: 30px;
             justify-content: center;
             flex-wrap: wrap;
             font-size: 1.05rem;
         }
 
         .contact-link {
-            color: var(--accent-hover);
+            color: var(--accent-cyan);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.2s ease;
         }
 
         .contact-link:hover {
+            color: #7dd3fc;
             text-decoration: underline;
         }
 
-        /* Collapsible Briefing Form Styling */
+        /* Collapsible Form Styling */
         .briefing-container {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
+            max-width: 620px;
+            margin: 0 auto 35px auto;
         }
 
         .briefing-toggle-btn {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-indigo) 100%);
             color: #ffffff;
             border: none;
-            border-radius: 6px;
-            padding: 14px 28px;
+            border-radius: 10px;
+            padding: 16px 36px;
             font-size: 1.05rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            width: auto;
-            display: inline-block;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+            letter-spacing: 0.2px;
         }
 
         .briefing-toggle-btn:hover {
-            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
         }
 
         .contact-form.hidden {
@@ -236,59 +347,71 @@
         }
 
         .contact-form {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            padding: 30px;
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
             text-align: left;
-            animation: fadeIn 0.3s ease-in-out;
+            animation: fadeIn 0.35s ease-in-out;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
+            from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         label {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         input, textarea {
             width: 100%;
-            padding: 12px;
-            background-color: #161b22;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-main);
-            font-size: 0.95rem;
+            padding: 14px;
+            background-color: rgba(10, 15, 26, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            color: var(--text-heading);
+            font-size: 0.98rem;
+            transition: border-color 0.2s ease;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: var(--accent-color);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
         }
 
         .submit-btn {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-indigo) 100%);
             color: #ffffff;
             border: none;
-            border-radius: 6px;
-            padding: 12px 20px;
+            border-radius: 8px;
+            padding: 14px 24px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: all 0.2s ease;
+            margin-top: 5px;
         }
 
         .submit-btn:hover {
-            background-color: var(--accent-hover);
+            opacity: 0.95;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
 
         .footer-note {
@@ -296,6 +419,13 @@
             text-align: center;
             font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 1.9rem; }
+            p.subtitle { font-size: 1.05rem; }
+            .service-desc { padding-left: 0; margin-top: 10px; }
+            .service-header { align-items: flex-start; }
         }
     </style>
 </head>
@@ -318,39 +448,56 @@
             <p class="region-tag">📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada</p>
         </header>
 
+        <!-- Executive Metrics/Value Ribbon -->
+        <div class="value-ribbon">
+            <div class="value-pill">
+                <span>⚡</span> Pay-for-Results Value Model
+            </div>
+            <div class="value-pill">
+                <span>🎯</span> Rapid Diagnostic Turnaround
+            </div>
+            <div class="value-pill">
+                <span>🛡️</span> Direct Senior Executive Advisory
+            </div>
+        </div>
+
         <!-- Services Breakdown -->
         <section class="services-grid">
-            <div class="service-item">
-                <div class="service-title">
-                    <!-- Custom SVG: White Life Preserver with Red Trim -->
-                    <svg class="service-icon" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#d0d7de" stroke-width="2" />
-                        <circle cx="50" cy="50" r="20" fill="#0d1117" stroke="#d0d7de" stroke-width="2" />
-                        <path d="M 40,5 A 45,45 0 0,1 60,5 L 56,30 A 20,20 0 0,0 44,30 Z" fill="#dc2626" />
-                        <path d="M 40,95 A 45,45 0 0,0 60,95 L 56,70 A 20,20 0 0,1 44,70 Z" fill="#dc2626" />
-                        <path d="M 5,40 A 45,45 0 0,0 5,60 L 30,56 A 20,20 0 0,1 30,44 Z" fill="#dc2626" />
-                        <path d="M 95,40 A 45,45 0 0,1 95,60 L 70,56 A 20,20 0 0,0 70,44 Z" fill="#dc2626" />
-                    </svg>
-                    IT Project Rescue & Recovery
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="icon-badge">
+                        <!-- Custom SVG: White Life Preserver with Red Trim -->
+                        <svg width="26" height="26" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#d0d7de" stroke-width="2" />
+                            <circle cx="50" cy="50" r="20" fill="#0d1117" stroke="#d0d7de" stroke-width="2" />
+                            <path d="M 40,5 A 45,45 0 0,1 60,5 L 56,30 A 20,20 0 0,0 44,30 Z" fill="#dc2626" />
+                            <path d="M 40,95 A 45,45 0 0,0 60,95 L 56,70 A 20,20 0 0,1 44,70 Z" fill="#dc2626" />
+                            <path d="M 5,40 A 45,45 0 0,0 5,60 L 30,56 A 20,20 0 0,1 30,44 Z" fill="#dc2626" />
+                            <path d="M 95,40 A 45,45 0 0,1 95,60 L 70,56 A 20,20 0 0,0 70,44 Z" fill="#dc2626" />
+                        </svg>
+                    </div>
+                    <div class="service-title-text">IT Project Rescue & Recovery</div>
                 </div>
                 <div class="service-desc">Stepping into stalled or failing technical initiatives to diagnose bottlenecks, rebuild architecture, and deliver fixed-outcome results.</div>
             </div>
 
-            <div class="service-item">
-                <div class="service-title">
-                    <!-- Custom SVG: Red/White Target with Arrow in Bullseye -->
-                    <svg class="service-icon" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="45" fill="#dc2626" />
-                        <circle cx="50" cy="50" r="33" fill="#ffffff" />
-                        <circle cx="50" cy="50" r="21" fill="#dc2626" />
-                        <circle cx="50" cy="50" r="11" fill="#ffffff" />
-                        <circle cx="50" cy="50" r="5" fill="#dc2626" />
-                        <line x1="15" y1="85" x2="48" y2="52" stroke="#eab308" stroke-width="4" stroke-linecap="round" />
-                        <polygon points="45,45 52,48 48,52" fill="#eab308" />
-                        <path d="M 12,88 L 8,80 L 16,84 Z" fill="#fde047" />
-                        <path d="M 12,88 L 20,92 L 16,84 Z" fill="#fde047" />
-                    </svg>
-                    Strategic Systems Alignment
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="icon-badge">
+                        <!-- Custom SVG: Red/White Target with Arrow in Bullseye -->
+                        <svg width="26" height="26" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="#dc2626" />
+                            <circle cx="50" cy="50" r="33" fill="#ffffff" />
+                            <circle cx="50" cy="50" r="21" fill="#dc2626" />
+                            <circle cx="50" cy="50" r="11" fill="#ffffff" />
+                            <circle cx="50" cy="50" r="5" fill="#dc2626" />
+                            <line x1="15" y1="85" x2="48" y2="52" stroke="#eab308" stroke-width="4" stroke-linecap="round" />
+                            <polygon points="45,45 52,48 48,52" fill="#eab308" />
+                            <path d="M 12,88 L 8,80 L 16,84 Z" fill="#fde047" />
+                            <path d="M 12,88 L 20,92 L 16,84 Z" fill="#fde047" />
+                        </svg>
+                    </div>
+                    <div class="service-title-text">Strategic Systems Alignment</div>
                 </div>
                 <div class="service-desc">Aligning strategic executive goals with agile tactical execution, system architecture, and high-impact operational delivery.</div>
             </div>
