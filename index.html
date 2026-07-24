@@ -247,33 +247,6 @@
             display: inline-block;
         }
 
-        /* Executive Metrics/Value Ribbon */
-        .value-ribbon {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 28vw, 260px), 1fr));
-            gap: 12px;
-            margin-bottom: clamp(30px, 4vw, 45px);
-        }
-
-        .value-pill {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-subtle);
-            padding: clamp(10px, 1.5vw, 14px) 16px;
-            border-radius: 10px;
-            font-size: clamp(0.8rem, 1vw, 0.88rem);
-            font-weight: 600;
-            color: var(--text-heading);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .value-pill span {
-            color: var(--accent-cyan);
-        }
-
         /* Responsive Services Grid */
         .services-grid {
             display: grid;
@@ -517,20 +490,7 @@
     </section>
 
     <main class="wrapper">
-        <!-- Executive Metrics/Value Ribbon -->
-        <div class="value-ribbon">
-            <div class="value-pill">
-                <span>⚡</span> Pay-for-Results Value Model
-            </div>
-            <div class="value-pill">
-                <span>🎯</span> Rapid Diagnostic Turnaround
-            </div>
-            <div class="value-pill">
-                <span>🛡️</span> Direct Senior Executive Advisory
-            </div>
-        </div>
-
-        <!-- Services Breakdown Grid -->
+        <!-- Responsive Services Grid -->
         <section class="services-grid">
             <div class="service-card">
                 <div class="service-header">
