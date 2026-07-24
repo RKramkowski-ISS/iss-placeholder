@@ -60,7 +60,7 @@
         :root {
             --bg-base: #06090e;
             --surface-card: rgba(18, 24, 38, 0.65);
-            --border-glow: rgba(56, 189, 248, 0.2);
+            --border-glow: rgba(56, 189, 248, 0.25);
             --border-subtle: rgba(255, 255, 255, 0.08);
             --text-heading: #ffffff;
             --text-main: #cbd5e1;
@@ -85,129 +85,148 @@
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 50px 20px;
+            justify-content: flex-start;
+            padding: clamp(20px, 4vw, 60px) clamp(16px, 3vw, 40px);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Ambient Background Light Orbs */
+        /* Responsive Ambient Background Lighting */
         body::before {
             content: "";
             position: absolute;
             top: -10%;
-            left: 20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: "";
-            position: absolute;
-            bottom: -10%;
-            right: 20%;
-            width: 550px;
-            height: 550px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(300px, 70vw, 800px);
+            height: clamp(300px, 50vw, 600px);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
             z-index: -1;
             pointer-events: none;
         }
 
         .wrapper {
-            max-width: 860px;
+            max-width: 920px;
             width: 100%;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
+        /* Subordinated Brand Header Line */
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: clamp(16px, 2vw, 24px);
+            margin-bottom: clamp(24px, 3vw, 40px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .brand-identity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-small {
+            height: clamp(28px, 3.5vw, 36px);
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .brand-name {
+            font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
         /* Placeholder Warning Banner */
         .placeholder-banner {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 18px;
-            font-size: 0.8rem;
+            gap: 6px;
+            padding: 4px 12px;
+            font-size: clamp(0.7rem, 0.9vw, 0.78rem);
             font-weight: 700;
             color: var(--banner-text);
             background: var(--banner-bg);
             border: 1px solid var(--banner-border);
             border-radius: 999px;
-            margin-bottom: 28px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
             backdrop-filter: blur(8px);
         }
 
-        .logo-container {
-            margin-bottom: 1.8rem;
+        /* Hero Core Positioning (Primary Focal Point) */
+        .hero-section {
+            margin-bottom: clamp(30px, 4vw, 50px);
         }
 
-        .logo-img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 8px;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--text-heading);
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            max-width: 720px;
-            margin: 0 auto 16px auto;
-            font-weight: 400;
-        }
-
-        .notice-text {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-style: italic;
-            margin-bottom: 24px;
-        }
-
-        .region-tag {
-            font-size: 0.95rem;
-            color: var(--accent-cyan);
-            font-weight: 600;
-            margin-bottom: 35px;
+        .hero-tag {
             display: inline-block;
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
             background: rgba(56, 189, 248, 0.08);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 20px;
             border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
-        /* Executive Value Highlights Ribbon */
+        /* Fluid Typography scaling for Executive Headline */
+        h1.hero-statement {
+            font-size: clamp(1.8rem, 3.8vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text-heading);
+            background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
+        }
+
+        .notice-text {
+            color: var(--text-muted);
+            font-size: clamp(0.88rem, 1.1vw, 1rem);
+            font-style: italic;
+            max-width: 680px;
+            margin: 0 auto 20px auto;
+        }
+
+        .region-tag {
+            font-size: clamp(0.82rem, 1vw, 0.92rem);
+            color: var(--text-main);
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* Executive Metrics/Value Ribbon */
         .value-ribbon {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-bottom: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 28vw, 260px), 1fr));
+            gap: 12px;
+            margin-bottom: clamp(30px, 4vw, 45px);
         }
 
         .value-pill {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-subtle);
-            padding: 12px 16px;
+            padding: clamp(10px, 1.5vw, 14px) 16px;
             border-radius: 10px;
-            font-size: 0.85rem;
+            font-size: clamp(0.8rem, 1vw, 0.88rem);
             font-weight: 600;
             color: var(--text-heading);
             display: flex;
@@ -221,58 +240,43 @@
             color: var(--accent-cyan);
         }
 
-        /* Glassmorphic Services Grid */
+        /* Responsive Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 42vw, 420px), 1fr));
             gap: 20px;
-            margin-bottom: 35px;
+            margin-bottom: clamp(30px, 4vw, 45px);
             text-align: left;
         }
 
         .service-card {
             background: var(--surface-card);
             border: 1px solid var(--border-subtle);
-            padding: 28px;
+            padding: clamp(20px, 3vw, 32px);
             border-radius: 14px;
             backdrop-filter: blur(12px);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .service-card:hover {
             border-color: var(--border-glow);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
         }
 
         .service-header {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 10px;
+            gap: 14px;
+            margin-bottom: 12px;
         }
 
         .icon-badge {
-            width: 44px;
-            height: 44px;
+            width: clamp(38px, 4vw, 44px);
+            height: clamp(38px, 4vw, 44px);
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -284,25 +288,24 @@
 
         .service-title-text {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: clamp(1.05rem, 1.3vw, 1.25rem);
             color: var(--text-heading);
         }
 
         .service-desc {
-            font-size: 0.98rem;
+            font-size: clamp(0.9rem, 1.1vw, 0.98rem);
             color: var(--text-main);
-            line-height: 1.65;
-            padding-left: 60px;
+            line-height: 1.6;
         }
 
-        /* Direct Contact Info */
+        /* Direct Contact Links */
         .direct-contact {
-            margin-bottom: 35px;
+            margin-bottom: clamp(30px, 4vw, 40px);
             display: flex;
-            gap: 30px;
+            gap: clamp(16px, 3vw, 35px);
             justify-content: center;
             flex-wrap: wrap;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 1.1vw, 1.05rem);
         }
 
         .contact-link {
@@ -317,10 +320,11 @@
             text-decoration: underline;
         }
 
-        /* Collapsible Form Styling */
+        /* Collapsible Form Container */
         .briefing-container {
-            max-width: 620px;
-            margin: 0 auto 35px auto;
+            max-width: 600px;
+            margin: 0 auto clamp(30px, 4vw, 50px) auto;
+            width: 100%;
         }
 
         .briefing-toggle-btn {
@@ -328,13 +332,15 @@
             color: #ffffff;
             border: none;
             border-radius: 10px;
-            padding: 16px 36px;
-            font-size: 1.05rem;
+            padding: clamp(14px, 2vw, 18px) clamp(24px, 3vw, 40px);
+            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.25s ease;
             box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
             letter-spacing: 0.2px;
+            width: 100%;
+            max-width: 420px;
         }
 
         .briefing-toggle-btn:hover {
@@ -349,12 +355,12 @@
         .contact-form {
             background: var(--surface-card);
             border: 1px solid var(--border-subtle);
-            padding: 30px;
+            padding: clamp(20px, 3vw, 32px);
             border-radius: 14px;
             backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
             text-align: left;
             animation: fadeIn 0.35s ease-in-out;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
@@ -368,11 +374,11 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-main);
             text-transform: uppercase;
@@ -381,12 +387,12 @@
 
         input, textarea {
             width: 100%;
-            padding: 14px;
+            padding: clamp(10px, 1.5vw, 14px);
             background-color: rgba(10, 15, 26, 0.8);
             border: 1px solid var(--border-subtle);
             border-radius: 8px;
             color: var(--text-heading);
-            font-size: 0.98rem;
+            font-size: clamp(0.9rem, 1vw, 0.98rem);
             transition: border-color 0.2s ease;
         }
 
@@ -415,38 +421,59 @@
         }
 
         .footer-note {
-            margin-top: 40px;
+            margin-top: auto;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
         }
 
-        @media (max-width: 640px) {
-            h1 { font-size: 1.9rem; }
-            p.subtitle { font-size: 1.05rem; }
-            .service-desc { padding-left: 0; margin-top: 10px; }
-            .service-header { align-items: flex-start; }
+        /* Mobile Optimization overrides */
+        @media (max-width: 580px) {
+            .brand-header {
+                justify-content: center;
+                text-align: center;
+            }
+            .brand-identity {
+                flex-direction: column;
+                gap: 6px;
+            }
         }
     </style>
 </head>
 <body>
 
     <main class="wrapper">
-        <header>
-            <!-- Explicit Placeholder Warning Banner -->
+        
+        <!-- Subordinated Company Bar -->
+        <header class="brand-header">
+            <div class="brand-identity">
+                <img src="Logo 5.png" alt="Innovative Strategic Solutions Logo" class="brand-logo-small">
+                <span class="brand-name">Innovative Strategic Solutions, LLC</span>
+            </div>
+            
+            <!-- Temporary Status Pill -->
             <div class="placeholder-banner">
-                <span>🚧 Temporary Placeholder Page — Full Web Experience Launching Soon</span>
+                <span>🚧 Full Portal Launching Soon</span>
             </div>
-
-            <div class="logo-container">
-                <img src="Logo 5.png" alt="Innovative Strategic Solutions, LLC Logo" class="logo-img">
-            </div>
-
-            <h1>Innovative Strategic Solutions, LLC</h1>
-            <p class="subtitle">Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.</p>
-            <p class="notice-text">Our comprehensive corporate portal is currently under development. For urgent project recovery or technical consulting, please use the direct channels below.</p>
-            <p class="region-tag">📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada</p>
         </header>
+
+        <!-- Primary Focal Point: The Executive Statement -->
+        <section class="hero-section">
+            <span class="hero-tag">Enterprise IT Turnaround & Recovery</span>
+            
+            <!-- Emphasized Hook -->
+            <h1 class="hero-statement">
+                Rapid diagnostic intervention and objective critical-path re-baselining for distressed enterprise initiatives.
+            </h1>
+            
+            <p class="notice-text">
+                Our full digital experience is currently under development. For urgent project recovery or executive consultation, please use the briefing request below.
+            </p>
+            
+            <p class="region-tag">
+                📍 On-Site: Greater St. Louis & Surrounding MO/IL Counties &bull; 🌐 Virtual Advisory: US & Canada
+            </p>
+        </section>
 
         <!-- Executive Metrics/Value Ribbon -->
         <div class="value-ribbon">
@@ -461,13 +488,13 @@
             </div>
         </div>
 
-        <!-- Services Breakdown -->
+        <!-- Services Breakdown Grid -->
         <section class="services-grid">
             <div class="service-card">
                 <div class="service-header">
                     <div class="icon-badge">
                         <!-- Custom SVG: White Life Preserver with Red Trim -->
-                        <svg width="26" height="26" viewBox="0 0 100 100">
+                        <svg width="24" height="24" viewBox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#d0d7de" stroke-width="2" />
                             <circle cx="50" cy="50" r="20" fill="#0d1117" stroke="#d0d7de" stroke-width="2" />
                             <path d="M 40,5 A 45,45 0 0,1 60,5 L 56,30 A 20,20 0 0,0 44,30 Z" fill="#dc2626" />
@@ -485,7 +512,7 @@
                 <div class="service-header">
                     <div class="icon-badge">
                         <!-- Custom SVG: Red/White Target with Arrow in Bullseye -->
-                        <svg width="26" height="26" viewBox="0 0 100 100">
+                        <svg width="24" height="24" viewBox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#dc2626" />
                             <circle cx="50" cy="50" r="33" fill="#ffffff" />
                             <circle cx="50" cy="50" r="21" fill="#dc2626" />
@@ -503,13 +530,13 @@
             </div>
         </section>
 
-        <!-- Direct Contact Info -->
+        <!-- Direct Contact Links -->
         <div class="direct-contact">
             <div>✉️ <a href="mailto:info@innovativess.us" class="contact-link">info@innovativess.us</a></div>
             <div>📞 <a href="tel:+16363521789" class="contact-link">(636) 352-1789</a></div>
         </div>
 
-        <!-- Collapsible Inquiry Form -->
+        <!-- Collapsible Executive Briefing Form -->
         <div class="briefing-container">
             <button type="button" class="briefing-toggle-btn" id="toggleBriefingBtn" onclick="toggleBriefingForm()">
                 Request an Executive Briefing
