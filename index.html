@@ -207,13 +207,45 @@
             text-decoration: underline;
         }
 
+        /* Collapsible Briefing Form Styling */
+        .briefing-container {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .briefing-toggle-btn {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 28px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            width: auto;
+            display: inline-block;
+        }
+
+        .briefing-toggle-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .contact-form.hidden {
+            display: none;
+        }
+
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
             text-align: left;
-            max-width: 600px;
-            margin: 0 auto;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-group {
@@ -243,7 +275,7 @@
             border-color: var(--accent-color);
         }
 
-        button {
+        .submit-btn {
             background-color: var(--accent-color);
             color: #ffffff;
             border: none;
@@ -255,7 +287,7 @@
             transition: background-color 0.2s ease;
         }
 
-        button:hover {
+        .submit-btn:hover {
             background-color: var(--accent-hover);
         }
 
@@ -320,7 +352,8 @@
                     </svg>
                     Strategic Systems Alignment
                 </div>
-                <div class="service-desc">Translating strategic executive vision into resilient tactical frameworks, streamlined workflows, and measurable operational results.</div></div>
+                <div class="service-desc">Aligning strategic executive goals with agile tactical execution, system architecture, and high-impact operational delivery.</div>
+            </div>
         </section>
 
         <!-- Direct Contact Info -->
@@ -329,23 +362,41 @@
             <div>📞 <a href="tel:+16363521789" class="contact-link">(636) 352-1789</a></div>
         </div>
 
-        <!-- Inquiry Form -->
-        <form class="contact-form" action="mailto:info@innovativess.us" method="POST" enctype="text/plain">
-            <div class="form-group">
-                <label for="email">Executive / Business Email</label>
-                <input type="email" id="email" name="Executive Email" placeholder="name@company.com" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Brief Project Inquiry or Challenge</label>
-                <textarea id="message" name="Project Challenge" rows="3" placeholder="Tell us about your technical timeline or project scope..."></textarea>
-            </div>
-            <button type="submit">Request Executive Briefing</button>
-        </form>
+        <!-- Collapsible Inquiry Form -->
+        <div class="briefing-container">
+            <button type="button" class="briefing-toggle-btn" id="toggleBriefingBtn" onclick="toggleBriefingForm()">
+                Request an Executive Briefing
+            </button>
+
+            <form id="executiveForm" class="contact-form hidden" action="mailto:info@innovativess.us" method="POST" enctype="text/plain">
+                <div class="form-group">
+                    <label for="email">Executive / Business Email</label>
+                    <input type="email" id="email" name="Executive Email" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Brief Project Inquiry or Challenge</label>
+                    <textarea id="message" name="Project Challenge" rows="3" placeholder="Tell us about your technical timeline or project scope..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
 
         <footer class="footer-note">
             &copy; 2026 Innovative Strategic Solutions, LLC &bull; Serving the United States & Canada
         </footer>
     </main>
+
+    <script>
+        function toggleBriefingForm() {
+            const form = document.getElementById('executiveForm');
+            const toggleBtn = document.getElementById('toggleBriefingBtn');
+            
+            if (form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+                toggleBtn.style.display = 'none';
+            }
+        }
+    </script>
 
 </body>
 </html>
