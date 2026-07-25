@@ -526,17 +526,25 @@
                 Request an Executive Briefing
             </button>
 
-            <!-- Cleaned form element using safe JS handler instead of insecure mailto action -->
-            <form id="executiveForm" class="contact-form hidden" onsubmit="handleFormSubmit(event)">
+            <!-- Success and Error feedback containers for Formspree Ajax -->
+            <div data-fs-success style="display:none; color: var(--accent-cyan); font-weight: 600; margin-bottom: 15px; padding: 12px; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3);">
+                Thank you! Your briefing request has been sent successfully. We will be in touch shortly.
+            </div>
+            <div data-fs-error style="display:none; color: #ef4444; font-weight: 600; margin-bottom: 15px; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);"></div>
+
+            <!-- Form configured with Formspree attributes & data-fs-field hooks -->
+            <form id="executiveForm" class="contact-form hidden">
                 <div class="form-group">
                     <label for="email">Executive / Business Email</label>
-                    <input type="email" id="email" name="Executive Email" placeholder="name@company.com" required>
+                    <input type="email" id="email" name="email" data-fs-field placeholder="name@company.com" required>
+                    <span data-fs-error="email" style="font-size: 0.78rem; color: #ef4444;"></span>
                 </div>
                 <div class="form-group">
                     <label for="message">Brief Project Inquiry or Challenge</label>
-                    <textarea id="message" name="Project Challenge" rows="3" placeholder="Tell us about your technical timeline or project scope..."></textarea>
+                    <textarea id="message" name="message" data-fs-field rows="3" placeholder="Tell us about your technical timeline or project scope..." required></textarea>
+                    <span data-fs-error="message" style="font-size: 0.78rem; color: #ef4444;"></span>
                 </div>
-                <button type="submit" class="submit-btn">Submit Request</button>
+                <button type="submit" class="submit-btn" data-fs-submit-btn>Submit Request</button>
             </form>
         </div>
 
@@ -547,6 +555,13 @@
 
     <!-- Manual Cloudflare Web Analytics Beacon Script -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_ACTUAL_TOKEN_HERE"}'></script>
+
+    <!-- Formspree Ajax Initialization Script -->
+    <script>
+        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+        formspree('initForm', { formElement: '#executiveForm', formId: 'xjgnpvda' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
     <script>
         function toggleBriefingForm() {
@@ -565,18 +580,6 @@
 
             // Telemetry tracking hook for form toggle action
             sendTelemetry('interaction', isHidden ? 'Open Executive Briefing Form' : 'Close Executive Briefing Form');
-        }
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Trigger telemetry tracking hook for form submission
-            sendTelemetry('form_submission', 'Executive Briefing Submitted');
-            
-            // Securely open user's email client as a fallback submission action
-            window.location.href = `mailto:info@innovativess.us?subject=Executive%20Briefing%20Request&body=From:%20${encodeURIComponent(email)}%0A%0A${encodeURIComponent(message)}`;
         }
 
         function sendTelemetry(eventType, label) {
