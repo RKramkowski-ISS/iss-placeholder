@@ -556,10 +556,30 @@
     <!-- Manual Cloudflare Web Analytics Beacon Script -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_ACTUAL_TOKEN_HERE"}'></script>
 
-    <!-- Formspree Ajax Initialization Script -->
+    <!-- Formspree Ajax Initialization Script with Native onSuccess Callback -->
     <script>
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { formElement: '#executiveForm', formId: 'xjgnpvda' });
+        formspree('initForm', { 
+            formElement: '#executiveForm', 
+            formId: 'xjgnpvda',
+            onSuccess: (context, result) => {
+                // Display the success acknowledgement banner
+                const successDiv = document.querySelector('[data-fs-success]');
+                if (successDiv) {
+                    successDiv.style.display = 'block';
+                }
+
+                sendTelemetry('form_submission', 'Executive Briefing Submitted Successfully');
+
+                // Automatically close and reset the briefing request after 2.5 seconds
+                setTimeout(() => {
+                    const form = document.getElementById('executiveForm');
+                    if (!form.classList.contains('hidden')) {
+                        toggleBriefingForm();
+                    }
+                }, 2500);
+            }
+        });
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
@@ -585,29 +605,6 @@
             // Telemetry tracking hook for form toggle action
             sendTelemetry('interaction', isHidden ? 'Open Executive Briefing Form' : 'Close Executive Briefing Form');
         }
-
-        // Automatically close and reset form 2.5 seconds after a successful Formspree submission
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new MutationObserver((mutations) => {
-                const successDiv = document.querySelector('[data-fs-success]');
-                if (successDiv && successDiv.style.display !== 'none' && !formIsClosing) {
-                    window.formIsClosing = true;
-                    sendTelemetry('form_submission', 'Executive Briefing Submitted Successfully');
-                    setTimeout(() => {
-                        const form = document.getElementById('executiveForm');
-                        if (!form.classList.contains('hidden')) {
-                            toggleBriefingForm();
-                        }
-                        window.formIsClosing = false;
-                    }, 2500);
-                }
-            });
-
-            const successContainer = document.querySelector('[data-fs-success]');
-            if (successContainer) {
-                observer.observe(successContainer, { attributes: true, attributeFilter: ['style'] });
-            }
-        });
 
         function sendTelemetry(eventType, label) {
             const payload = JSON.stringify({
