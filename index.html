@@ -528,7 +528,7 @@
 
             <!-- Success and Error feedback containers for Formspree Ajax -->
             <div data-fs-success style="display:none; color: var(--accent-cyan); font-weight: 600; margin-bottom: 15px; padding: 12px; background: rgba(56, 189, 248, 0.1); border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3);">
-                Thank you! Your briefing request has been sent successfully. We will be in touch shortly.
+                Thank you! Your briefing request has been sent successfully. Closing request...
             </div>
             <div data-fs-error style="display:none; color: #ef4444; font-weight: 600; margin-bottom: 15px; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3);"></div>
 
@@ -576,11 +576,38 @@
             } else {
                 form.classList.add('hidden');
                 toggleBtn.textContent = 'Request an Executive Briefing';
+                // Reset form fields and success banner when explicitly closed
+                form.reset();
+                const successDiv = document.querySelector('[data-fs-success]');
+                if (successDiv) successDiv.style.display = 'none';
             }
 
             // Telemetry tracking hook for form toggle action
             sendTelemetry('interaction', isHidden ? 'Open Executive Briefing Form' : 'Close Executive Briefing Form');
         }
+
+        // Automatically close and reset form 2.5 seconds after a successful Formspree submission
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new MutationObserver((mutations) => {
+                const successDiv = document.querySelector('[data-fs-success]');
+                if (successDiv && successDiv.style.display !== 'none' && !formIsClosing) {
+                    window.formIsClosing = true;
+                    sendTelemetry('form_submission', 'Executive Briefing Submitted Successfully');
+                    setTimeout(() => {
+                        const form = document.getElementById('executiveForm');
+                        if (!form.classList.contains('hidden')) {
+                            toggleBriefingForm();
+                        }
+                        window.formIsClosing = false;
+                    }, 2500);
+                }
+            });
+
+            const successContainer = document.querySelector('[data-fs-success]');
+            if (successContainer) {
+                observer.observe(successContainer, { attributes: true, attributeFilter: ['style'] });
+            }
+        });
 
         function sendTelemetry(eventType, label) {
             const payload = JSON.stringify({
